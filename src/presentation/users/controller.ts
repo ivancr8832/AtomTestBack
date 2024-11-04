@@ -32,7 +32,7 @@ export class UserController {
                 return;
             }
 
-            res.json({ ok: true, message: null, data: { token, ...userEntity } });
+            res.json({ ok: true, message: null, data: { token, user: userEntity } });
             return
 
         } catch (error) {
@@ -57,7 +57,7 @@ export class UserController {
                 return;
             }
 
-            res.json({ ok: true, message: null, data: { token, ...newUser } });
+            res.json({ ok: true, message: null, data: { token, user: newUser } });
         } catch (error) {
             res.status(500).json({ ok: false, message: "Talk to administrator", data: null })
             return;
