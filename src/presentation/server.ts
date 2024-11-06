@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import cors from 'cors';
 import { FirebaseDb } from '../data/firebase';
 
 interface Options {
@@ -25,6 +26,7 @@ export class Server {
         //* Middlewares
         this.app.use(express.json());
         this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(cors());
 
         //* Public Folder
         this.app.use(express.static(this.publicPath));
