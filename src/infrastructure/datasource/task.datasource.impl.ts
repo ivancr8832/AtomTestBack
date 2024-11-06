@@ -12,9 +12,9 @@ export class TaskDatasourceImpl implements TaskDatasource {
         }
     }
 
-    public async getAll(page: number, limit: number): Promise<Pagination<TaskEntity[]>> {
+    public async getAll(page: number, limit: number, userId: string): Promise<Pagination<TaskEntity[]>> {
         try {
-            const { currentPage, documents, totalPages, totalRecords } = await FirebaseDb.getAll("tasks", page, limit);
+            const { currentPage, documents, totalPages, totalRecords } = await FirebaseDb.getAll("tasks", page, limit,userId);
             const tasks: TaskEntity[] = documents.map(doc => TaskEntity.fromObject(doc));
             return { currentPage, items: tasks, totalPages, totalRecords };
         } catch (error) {

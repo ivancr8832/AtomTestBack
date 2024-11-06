@@ -9,8 +9,8 @@ export class TaskRespositoryImpl implements TaskRepository {
     create(createTaskDto: CreateTaskDto): Promise<TaskEntity> {
         return this.datasource.create(createTaskDto);
     }
-    getAll(page: number, limit: number): Promise<Pagination<TaskEntity[]>> {
-        return this.datasource.getAll(page, limit);
+    getAll(page: number, limit: number, userId: string): Promise<Pagination<TaskEntity[]>> {
+        return this.datasource.getAll(page, limit, userId);
     }
     findById(id: string): Promise<TaskEntity | null> {
         return this.datasource.findById(id);

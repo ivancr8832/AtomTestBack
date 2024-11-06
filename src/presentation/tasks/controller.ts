@@ -9,12 +9,12 @@ export class TasksController {
 
     public getTasks = async (req: Request, res: Response) => {
         try {
-            let { page, limit } = req.query;
+            let { page, limit, userId } = req.query;
 
             page = page ? page : "1";
             limit = limit ? limit : "5";
 
-            const paginationTask = await this.taskRepository.getAll(Number(page), Number(limit));
+            const paginationTask = await this.taskRepository.getAll(Number(page), Number(limit), userId as string);
             res.status(200).json({ ok: true, message: null, data: paginationTask });
 
             return;

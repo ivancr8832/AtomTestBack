@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, getFirestore, collection, getDoc, doc, deleteDoc, updateDoc, getDocs, query, limit, orderBy, DocumentData, startAfter, QueryDocumentSnapshot, Firestore  } from 'firebase/firestore';
+import { addDoc, getFirestore, collection, getDoc, doc, deleteDoc, updateDoc, getDocs, query, limit, orderBy, DocumentData, startAfter, QueryDocumentSnapshot, Firestore, where  } from 'firebase/firestore';
 import { envs } from "../config";
 
 const firebaseConfig = {
@@ -28,10 +28,10 @@ export class FirebaseDb {
         }
     }
 
-    public static async getAll(collectionName: string, page: number, limitNumber: number) {
+    public static async getAll(collectionName: string, page: number, limitNumber: number, userId: string) {
         const collectionRef = collection(this.db, collectionName);
 
-        const totalSnapshot = await getDocs(query(collectionRef));
+        const totalSnapshot = await getDocs(query(collectionRef, where("userId", "==", userId)));
         const totalRecords = totalSnapshot.size;
 
         const totalPages = Math.ceil(totalRecords / limitNumber);
