@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import cors from 'cors';
 import { FirebaseDb } from '../data/firebase';
+import path from 'path';
 
 interface Options {
     port: number;
@@ -30,6 +31,12 @@ export class Server {
 
         //* Public Folder
         this.app.use(express.static(this.publicPath));
+
+        this.app.get("*", (req, res) => {
+            const indextPath = path.join(__dirname + '../../../public/index.html');
+            res.sendFile(indextPath);
+            return;
+        });
 
         //* Routes
         this.app.use(this.routes);
