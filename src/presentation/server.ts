@@ -32,11 +32,11 @@ export class Server {
         //* Public Folder
         this.app.use(express.static(this.publicPath));
 
-        this.app.get("*", (req, res) => {
-            const indextPath = path.join(__dirname + '../../../public/index.html');
-            res.sendFile(indextPath);
-            return;
-        });
+        // this.app.get("*", (req, res) => {
+        //     const indextPath = path.join(__dirname + '../../../public/index.html');
+        //     res.sendFile(indextPath);
+        //     return;
+        // });
 
         //* Routes
         this.app.use(this.routes);
